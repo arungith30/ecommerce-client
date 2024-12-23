@@ -23,7 +23,7 @@ import ShoppingAccount from "./pages/shopping-view/account";
 import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth-page";
 //import UnauthPage from "./pages/unauth-page";
-// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { useEffect } from "react";
 // import { checkAuth } from "./store/auth-slice";
 //import { Skeleton } from "@/components/ui/skeleton";
@@ -32,8 +32,7 @@ import UnauthPage from "./pages/unauth-page";
 // import SearchProducts from "./pages/shopping-view/search";
 
 function App() {
-  const isAuthenticated = false;
-  const user = null;
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
