@@ -5,7 +5,7 @@ const API_BASE_URL = "http://localhost:5000/api/auth";
 
 const initialState = {
   isAuthenticated: false,
-  isLoading: false,
+  isLoading: true,
   user: null,
   error: null,
 };

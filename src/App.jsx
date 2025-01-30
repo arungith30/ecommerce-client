@@ -35,6 +35,7 @@ function App() {
         Loading...
       </div>
     );
+  console.log(isLoading, user);
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
