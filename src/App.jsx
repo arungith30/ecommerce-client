@@ -7,36 +7,38 @@ import AdminDashboard from "./pages/admin-view/dashboard";
 import AdminProducts from "./pages/admin-view/products";
 import AdminOrders from "./pages/admin-view/orders";
 import AdminFeatures from "./pages/admin-view/features";
-//import ShoppingHeader from "./components/shopping-view/header";
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
 import ShoppingListing from "./pages/shopping-view/Listing";
 import ShoppingCheckout from "./pages/shopping-view/checkout";
 import ShoppingAccount from "./pages/shopping-view/account";
-// import ShoppingLayout from "./components/shopping-view/layout";
-//import NotFound from "./pages/not-found";
-// import ShoppingHome from "./pages/shopping-view/home";
-// import ShoppingListing from "./pages/shopping-view/listing";
-// import ShoppingCheckout from "./pages/shopping-view/checkout";
-// import ShoppingAccount from "./pages/shopping-view/account";
+
 import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth-page";
-//import UnauthPage from "./pages/unauth-page";
-import { useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { checkAuth } from "./store/auth-slice";
-//import { Skeleton } from "@/components/ui/skeleton";
-// import PaypalReturnPage from "./pages/shopping-view/paypal-return";
-// import PaymentSuccessPage from "./pages/shopping-view/payment-success";
-// import SearchProducts from "./pages/shopping-view/search";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { checkAuth } from "./store/auth-slice";
 
 function App() {
-  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  const { user, isAuthenticated, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
 
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Loading...
+      </div>
+    );
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
+        {/* authroutes */}
         <Route
           path="/auth"
           element={
